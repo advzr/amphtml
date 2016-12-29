@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {writeScript, validateData} from '../3p/3p';
+import {loadScript, validateData} from '../3p/3p';
 
 /**
  * @param {!Window} global
@@ -22,13 +22,11 @@ import {writeScript, validateData} from '../3p/3p';
  */
 export function relap(global, data) {
   // TODO: check mandatory fields
-  validateData(data, [], ['zid', 'pid', 'custom3']);
-  const url = 'https://adserver.adreactor.com' +
-      '/servlet/view/banner/javascript/zone?' +
-      'zid=' + encodeURIComponent(data.zid) +
-      '&pid=' + encodeURIComponent(data.pid) +
-      '&custom3=' + encodeURIComponent(data.custom3) +
-      '&random=' + Math.floor(89999999 * Math.random() + 10000000) +
-      '&millis=' + Date.now();
-  writeScript(global, url);
+  validateData(data, [], ['token', 'url', 'anchorid']);
+  const url = `https://relap.io/api/v6/head.js?token=${encodeURIComponent(data.token)}&url=${encodeURIComponent(data.url)}`;
+  loadScript(global, url);
+
+  const anchorEl = global.document.createElement('div');
+  anchorEl.id = data.anchorid;
+  global.document.getElementById('c').appendChild(anchorEl);
 }

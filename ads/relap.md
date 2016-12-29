@@ -19,11 +19,12 @@ limitations under the License.
 ## Example
 
 ```html
-<amp-ad width=728 height=90
+<amp-ad width=728 height=500
     type="relap"
-    data-pid=790
-    data-zid=9
-    data-custom3="No Type">
+    data-token="D3UMgQWBqleq1tPW"
+    data-url="http://lifehacker.ru"
+    data-anchorid="KtUqRoZGqTHLaRUV"
+>
 </amp-ad>
 ```
 
